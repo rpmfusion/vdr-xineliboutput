@@ -9,7 +9,7 @@
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        9%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        10%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -134,6 +134,7 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{vdr_configdir}/plugins/%{pname}/
 
 %files plugin
+%dir %{vdr_configdir}/plugins/%{pname}
 %config(noreplace) %{_sysconfdir}/sysconfig/vdr-plugins.d/%{pname}.conf
 %config(noreplace) %{_sysconfdir}/vdr/plugins/%{pname}/allowed_hosts.conf
 
@@ -145,6 +146,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Thu May 29 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-10.cvs20140429
+- added %%dir %%{vdr_configdir}/plugins/%%{pname} to file section 
+
 * Wed May 28 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-9.cvs20140429
 - added %%{vdr_configdir}/plugins/%%{pname} to file section because not owned
 - Use %%global instead of %%define
