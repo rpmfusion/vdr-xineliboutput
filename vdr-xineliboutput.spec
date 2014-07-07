@@ -3,13 +3,13 @@
 %global xinepluginver 2.0.0
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global cvsver  20140429
+%global cvsver  20140704
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        10%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        11%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -17,8 +17,8 @@ License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
 # how to get the tarball
 # cvs -d:pserver:anonymous@xineliboutput.cvs.sourceforge.net:/cvsroot/xineliboutput co vdr-xineliboutput
-# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20140429
-# tar cfz /home/martin/rpmbuild/SOURCES/vdr-xineliboutput-1.1.0-20140429.tgz vdr-xineliboutput-1.1.0-20140429
+# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20140704
+# tar cfz /home/martin/rpmbuild/SOURCES/vdr-xineliboutput-1.1.0-20140704.tgz vdr-xineliboutput-1.1.0-20140704
 Source0:        %{name}-%{version}%{?cvsver:-%{cvsver}}.tgz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
@@ -146,6 +146,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Thu Jul 04 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-11.cvs20140704
+- Update to recent cvs version
+
 * Thu May 29 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-10.cvs20140429
 - added %%dir %%{vdr_configdir}/plugins/%%{pname} to file section 
 
