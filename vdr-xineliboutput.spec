@@ -9,7 +9,7 @@
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        12%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        13%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -146,6 +146,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Mon Oct 20 2014 Sérgio Basto <sergio@serjux.com> - 1.1.0-13.cvs20140704
+- Rebuilt for FFmpeg 2.4.3
+
 * Thu Aug 07 2014 Sérgio Basto <sergio@serjux.com> - 1.1.0-12.cvs20140704
 - Rebuilt for ffmpeg-2.3
 
