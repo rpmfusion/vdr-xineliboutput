@@ -3,13 +3,13 @@
 %global xinepluginver 2.0.0
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global cvsver  20140704
+%global cvsver  20150220
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        13%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        14%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -17,11 +17,12 @@ License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
 # how to get the tarball
 # cvs -d:pserver:anonymous@xineliboutput.cvs.sourceforge.net:/cvsroot/xineliboutput co vdr-xineliboutput
-# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20140704
-# tar cfz /home/martin/rpmbuild/SOURCES/vdr-xineliboutput-1.1.0-20140704.tgz vdr-xineliboutput-1.1.0-20140704
+# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20150220
+# tar cfz /home/martin/rpmbuild/SOURCES/vdr-xineliboutput-1.1.0-20150220.tgz vdr-xineliboutput-1.1.0-20150220
 Source0:        %{name}-%{version}%{?cvsver:-%{cvsver}}.tgz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
+Patch0:         https://raw.githubusercontent.com/VDR4Arch/vdr4arch/master/plugins/vdr-%{pname}/%{pname}_renamed_iDoubleTapTimeoutMs_in_libcec.diff
 
 BuildRequires:  gettext
 BuildRequires:  vdr-devel >= %{vdrver}
@@ -69,6 +70,7 @@ This package contain plugin for VDR
 
 %prep
 %setup -q -n %{name}-%{version}%{?cvsver:-%{cvsver}}
+%patch0 -p1
 
 ./configure \
     --enable-x11 \
@@ -146,13 +148,17 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Tue Mar 03 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-14.cvs20150220
+- Update to recent cvs version
+- Added patch %%{pname}_renamed_iDoubleTapTimeoutMs_in_libcec.diff
+
 * Mon Oct 20 2014 Sérgio Basto <sergio@serjux.com> - 1.1.0-13.cvs20140704
 - Rebuilt for FFmpeg 2.4.3
 
 * Thu Aug 07 2014 Sérgio Basto <sergio@serjux.com> - 1.1.0-12.cvs20140704
 - Rebuilt for ffmpeg-2.3
 
-* Thu Jul 04 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-11.cvs20140704
+* Fri Jul 04 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-11.cvs20140704
 - Update to recent cvs version
 
 * Thu May 29 2014 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-10.cvs20140429
