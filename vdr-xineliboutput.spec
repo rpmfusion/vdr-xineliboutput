@@ -9,7 +9,7 @@
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        14%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        15%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -124,7 +124,8 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %find_lang %{name}
 
 %files -f %{name}.lang
-%doc COPYING HISTORY README*
+%doc HISTORY README*
+%license COPYING
 %{_bindir}/vdr-fbfe
 %{_bindir}/vdr-sxfe
 %{_bindir}/mpg2c
@@ -148,6 +149,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Tue Mar 03 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-15.cvs20150220
+- mark license files as %%license where available
+
 * Tue Mar 03 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-14.cvs20150220
 - Update to recent cvs version
 - Added patch %%{pname}_renamed_iDoubleTapTimeoutMs_in_libcec.diff
