@@ -3,13 +3,13 @@
 %global xinepluginver 2.0.0
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global cvsver  20150220
+%global cvsver  20150422
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        15%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        16%{?cvsver:.cvs%{cvsver}}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
@@ -17,12 +17,11 @@ License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
 # how to get the tarball
 # cvs -d:pserver:anonymous@xineliboutput.cvs.sourceforge.net:/cvsroot/xineliboutput co vdr-xineliboutput
-# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20150220
-# tar cfz /home/martin/rpmbuild/SOURCES/vdr-xineliboutput-1.1.0-20150220.tgz vdr-xineliboutput-1.1.0-20150220
+# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20150422
+# tar cfz vdr-xineliboutput-1.1.0-20150422.tgz vdr-xineliboutput-1.1.0-20150422
 Source0:        %{name}-%{version}%{?cvsver:-%{cvsver}}.tgz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
-Patch0:         https://raw.githubusercontent.com/VDR4Arch/vdr4arch/master/plugins/vdr-%{pname}/%{pname}_renamed_iDoubleTapTimeoutMs_in_libcec.diff
 
 BuildRequires:  gettext
 BuildRequires:  vdr-devel >= %{vdrver}
@@ -70,7 +69,6 @@ This package contain plugin for VDR
 
 %prep
 %setup -q -n %{name}-%{version}%{?cvsver:-%{cvsver}}
-%patch0 -p1
 
 ./configure \
     --enable-x11 \
@@ -149,6 +147,10 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Wed Apr 22 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-16.cvs20150422
+- Update to recent cvs version
+
+- Added patch %%{pname}_renamed_iDoubleTapTimeoutMs_in_libcec.diff
 * Tue Mar 03 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-15.cvs20150220
 - mark license files as %%license where available
 
