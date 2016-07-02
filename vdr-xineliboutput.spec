@@ -3,23 +3,26 @@
 %global xinepluginver 2.0.0
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global cvsver  20150422
+%global gitrev  9027ea1
+%global gitdate 20160508
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        16%{?cvsver:.cvs%{cvsver}}%{?dist}
+Release:        17.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
-# how to get the tarball
-# cvs -d:pserver:anonymous@xineliboutput.cvs.sourceforge.net:/cvsroot/xineliboutput co vdr-xineliboutput
-# mv vdr-xineliboutput vdr-xineliboutput-1.1.0-20150422
-# tar cfz vdr-xineliboutput-1.1.0-20150422.tgz vdr-xineliboutput-1.1.0-20150422
-Source0:        %{name}-%{version}%{?cvsver:-%{cvsver}}.tgz
+# checkout instructions
+# git clone git://git.code.sf.net/p/xineliboutput/git vdr-xineliboutput
+# cd vdr-xineliboutput
+# git rev-parse --short HEAD
+# git archive --format=tar.gz --prefix=vdr-xineliboutput/ %{gitrev} \
+#     -o vdr-xineliboutput-%{version}-%{gitrev}.tar.gz
+Source0:        %{name}-%{version}-%{gitrev}.tar.gz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
 
@@ -68,7 +71,7 @@ VDR plugin: xine-lib based software output device for VDR
 This package contain plugin for VDR
 
 %prep
-%setup -q -n %{name}-%{version}%{?cvsver:-%{cvsver}}
+%setup -q -n %{name}
 
 ./configure \
     --enable-x11 \
@@ -147,6 +150,10 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 
 %changelog
+* Sat Jul 02 2016 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-17.20160508git9027ea1
+- Update to recent git version
+- Switched checkout command to git
+
 * Wed Apr 22 2015 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-16.cvs20150422
 - Update to recent cvs version
 
