@@ -3,16 +3,15 @@
 %global xinepluginver 2.0.0
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global gitrev  29f7afd
-%global gitdate 20160607
+%global gitrev  71eefbe
+%global gitdate 20170213
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        1.1.0
-Release:        19.%{gitdate}git%{gitrev}%{?dist}
+Release:        20.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
-
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -106,12 +105,13 @@ install -dm 755 %{buildroot}%{_datadir}/vdr/xineliboutput
 install -pm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/sysconfig/vdr-plugins.d/xineliboutput.conf
 install -pm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/vdr/plugins/%{pname}/
 
-make install DESTDIR=%{buildroot}
+#make install DESTDIR=%{buildroot}
+%make_install
 
 install -pm 755 mpg2c %{buildroot}%{_bindir}/mpg2c
-ln -s %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}-cvs \
+ln -s %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}-git \
       %{buildroot}%{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}
-ln -s %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}-cvs \
+ln -s %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}-git \
       %{buildroot}%{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
 install -pm 644 black_720x576.mpg %{buildroot}%{_sysconfdir}/vdr/plugins/%{pname}
 install -pm 644 nosignal_720x576.mpg %{buildroot}%{_sysconfdir}/vdr/plugins/%{pname}
@@ -144,12 +144,14 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 %{vdr_plugindir}/libvdr-%{pname}.so.%{vdr_apiversion}
 %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}
-%{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}-cvs
+%{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}-git
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
-%{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}-cvs
-
+%{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}-git
 
 %changelog
+* Wed Feb 15 2017 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-20.20170213git71eefbe
+- Update to recent git version
+
 * Sat Jan 28 2017 Martin Gansser <martinkg@fedoraproject.org> - 1.1.0-19.20160607git29f7afd
 - Update to recent git version
 
