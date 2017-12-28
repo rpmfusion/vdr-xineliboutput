@@ -3,14 +3,14 @@
 %global xinepluginver 2.0.1
 %global pname   xineliboutput
 %global vdrver  %(vdr-config --version 2>/dev/null || echo ERROR)
-%global gitrev  46f0f1d
-%global gitdate 20170315
+%global gitrev  f397e7e
+%global gitdate 20171207
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
-Version:        1.1.0
-Release:        24.%{gitdate}git%{gitrev}%{?dist}
+Version:        2.0.0
+Release:        1.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 Group:          Applications/Multimedia
 License:        GPLv2+
@@ -149,6 +149,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}-git
 
 %changelog
+* Thu Dec 28 2017 Martin Gansser <martinkg@fedoraproject.org> - 2.0.0-1.20171207gitf397e7e
+- Update to 2.0.0-1.20171207gitf397e7e
+
 * Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1.1.0-24.20170315git46f0f1d
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
