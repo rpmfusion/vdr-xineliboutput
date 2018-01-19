@@ -149,8 +149,11 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 #%%{vdr_plugindir}/libxineliboutput-sxfe.so.%%{xinepluginver}-git
 
 %changelog
-* Thu Jan 18 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-1.20180118gitcdd6595
+* Fri Jan 19 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-1.20180118gitcdd6595
 - Update to 2.1.0-1.20180118gitcdd6595
+
+* Thu Jan 18 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.0.0-2.20171207gitf397e7e
+- Rebuilt for ffmpeg-3.5 git
 
 * Thu Dec 28 2017 Martin Gansser <martinkg@fedoraproject.org> - 2.0.0-1.20171207gitf397e7e
 - Update to 2.0.0-1.20171207gitf397e7e
