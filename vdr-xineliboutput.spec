@@ -3,14 +3,14 @@
 %global xinepluginver 2.1.0
 %global pname   xineliboutput
 %global vdrver  %(pkg-config --modversion vdr 2>/dev/null || echo ERROR)
-%global gitrev  cdd6595
-%global gitdate 20180118
+%global gitrev  747f03e
+%global gitdate 20180226
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        3.%{gitdate}git%{gitrev}%{?dist}
+Release:        4.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 Group:          Applications/Multimedia
 License:        GPLv2+
@@ -149,17 +149,17 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 #%%{vdr_plugindir}/libxineliboutput-sxfe.so.%%{xinepluginver}-git
 
 %changelog
+* Sat Mar 10 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-4.20180226git747f03e
+- Update to 2.1.0-4.20180226git747f03e
+
 * Thu Mar 08 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 2.1.0-3.20180118gitcdd6595
 - Rebuilt for new ffmpeg snapshot
 
 * Thu Mar 01 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 2.1.0-2.20180118gitcdd6595
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
-* Fri Jan 19 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-1.20180118gitcdd6595
+* Thu Jan 18 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-1.20180118gitcdd6595
 - Update to 2.1.0-1.20180118gitcdd6595
-
-* Thu Jan 18 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.0.0-2.20171207gitf397e7e
-- Rebuilt for ffmpeg-3.5 git
 
 * Thu Dec 28 2017 Martin Gansser <martinkg@fedoraproject.org> - 2.0.0-1.20171207gitf397e7e
 - Update to 2.0.0-1.20171207gitf397e7e
