@@ -10,7 +10,7 @@
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        4.%{gitdate}git%{gitrev}%{?dist}
+Release:        5.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 Group:          Applications/Multimedia
 License:        GPLv2+
@@ -105,7 +105,6 @@ install -dm 755 %{buildroot}%{_datadir}/vdr/xineliboutput
 install -pm 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/sysconfig/vdr-plugins.d/xineliboutput.conf
 install -pm 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/vdr/plugins/%{pname}/
 
-#make install DESTDIR=%{buildroot}
 %make_install
 
 install -pm 755 mpg2c %{buildroot}%{_bindir}/mpg2c
@@ -144,11 +143,12 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 
 %{vdr_plugindir}/libvdr-%{pname}.so.%{vdr_apiversion}
 %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}
-#%%{vdr_plugindir}/libxineliboutput-fbfe.so.%%{xinepluginver}-git
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
-#%%{vdr_plugindir}/libxineliboutput-sxfe.so.%%{xinepluginver}-git
 
 %changelog
+* Wed Apr 18 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-5.20180226git747f03e
+- Rebuilt for vdr-2.4.0
+
 * Sat Mar 10 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-4.20180226git747f03e
 - Update to 2.1.0-4.20180226git747f03e
 
