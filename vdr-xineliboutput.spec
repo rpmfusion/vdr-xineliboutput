@@ -25,6 +25,7 @@ Source0:        %{name}-%{version}-%{gitrev}.tar.gz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
 
+BuildRequires:  gcc-c++
 BuildRequires:  gettext
 BuildRequires:  vdr-devel >= %{vdrver}
 BuildRequires:  libextractor-devel >= 0.5.22
@@ -148,6 +149,7 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %changelog
 * Fri Oct 12 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-9.20181005gitb298178
 - Update to 2.1.0-9.20181005gitb298178
+- Add BR gcc-c++
 
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.1.0-8.20180701git97b7e78
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
