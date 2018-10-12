@@ -3,14 +3,14 @@
 %global xinepluginver 2.1.0
 %global pname   xineliboutput
 %global vdrver  %(pkg-config --modversion vdr 2>/dev/null || echo ERROR)
-%global gitrev  97b7e78
-%global gitdate 20180701
+%global gitrev  b298178
+%global gitdate 20181005
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        8.%{gitdate}git%{gitrev}%{?dist}
+Release:        9.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 Group:          Applications/Multimedia
 License:        GPLv2+
@@ -146,6 +146,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
 
 %changelog
+* Fri Oct 12 2018 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-9.20181005gitb298178
+- Update to 2.1.0-9.20181005gitb298178
+
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.1.0-8.20180701git97b7e78
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
 
