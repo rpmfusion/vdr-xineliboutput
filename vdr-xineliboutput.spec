@@ -3,20 +3,20 @@
 %global xinepluginver 2.1.0
 %global pname   xineliboutput
 %global vdrver  %(pkg-config --modversion vdr 2>/dev/null || echo ERROR)
-%global gitrev  b298178
-%global gitdate 20181005
+%global gitrev  22d2fb4
+%global gitdate 20190514
 # build bluray support (disabled for now)
 %global have_bluray 1
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        10.%{gitdate}git%{gitrev}%{?dist}
+Release:        11.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
 # checkout instructions
-# git clone git://git.code.sf.net/p/xineliboutput/git vdr-xineliboutput
+# git clone https://git.code.sf.net/p/xineliboutput/git vdr-xineliboutput
 # cd vdr-xineliboutput
 # git rev-parse --short HEAD
 # git archive --format=tar.gz --prefix=vdr-xineliboutput/ %%{gitrev} \
@@ -130,6 +130,7 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{_bindir}/vdr-fbfe
 %{_bindir}/vdr-sxfe
 %{_bindir}/mpg2c
+%{_bindir}/vdr-wlfe
 
 %{xineplugindir}/xineplug_inp_xvdr.so
 %{xineplugindir}/post/xineplug_post_audiochannel.so
@@ -145,8 +146,12 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{vdr_plugindir}/libvdr-%{pname}.so.%{vdr_apiversion}
 %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
+%{vdr_plugindir}/libxineliboutput-wlfe.so.%{xinepluginver}
 
 %changelog
+* Thu May 16 2019 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-11.20190514git22d2fb4
+- Update to 2.1.0-11.20190516git22d2fb4
+
 * Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.1.0-10.20181005gitb298178
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
