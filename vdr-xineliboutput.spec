@@ -7,12 +7,12 @@
 %global gitdate 20190514
 # build bluray support (disabled for now)
 %global have_bluray 1
+%global have_wayland 1
 
 Name:           vdr-%{pname}
 Version:        2.1.0
 Release:        11.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
-Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
 # checkout instructions
@@ -52,6 +52,10 @@ Requires:       xine-lib >= %{xinever}
 BuildRequires:  libbluray-devel
 %endif
 
+%if %{have_wayland}
+BuildRequires:  wayland-devel
+%endif
+
 %description
 VDR plugin: xine-lib based software output device for VDR
 
@@ -59,7 +63,6 @@ This package contain plugin for Xine
 
 %package plugin
 Summary:        Plugins for watching VDR over Xine
-Group:          Applications/Multimedia
 License:        GPLv2+
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Provides:       libxineliboutput-fbfe.so = %{version}
@@ -77,7 +80,10 @@ This package contain plugin for VDR
     --enable-x11 \
     --enable-fb \
     --enable-vdr \
-    --enable-libxine  \
+    --enable-libxine \
+%if %{have_wayland}
+    --enable-wayland \
+%endif
     --debug \
 %if !%{have_bluray}
     --disable-libbluray \
@@ -130,7 +136,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{_bindir}/vdr-fbfe
 %{_bindir}/vdr-sxfe
 %{_bindir}/mpg2c
+%if %{have_wayland}
 %{_bindir}/vdr-wlfe
+%endif
 
 %{xineplugindir}/xineplug_inp_xvdr.so
 %{xineplugindir}/post/xineplug_post_audiochannel.so
@@ -146,11 +154,14 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %{vdr_plugindir}/libvdr-%{pname}.so.%{vdr_apiversion}
 %{vdr_plugindir}/libxineliboutput-fbfe.so.%{xinepluginver}
 %{vdr_plugindir}/libxineliboutput-sxfe.so.%{xinepluginver}
+%if %{have_wayland}
 %{vdr_plugindir}/libxineliboutput-wlfe.so.%{xinepluginver}
+%endif
 
 %changelog
 * Thu May 16 2019 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-11.20190514git22d2fb4
 - Update to 2.1.0-11.20190516git22d2fb4
+- Enable wayland support
 
 * Tue Mar 05 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.1.0-10.20181005gitb298178
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
