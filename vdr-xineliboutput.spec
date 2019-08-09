@@ -11,7 +11,7 @@
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        14.%{gitdate}git%{gitrev}%{?dist}
+Release:        15.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -159,6 +159,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %endif
 
 %changelog
+* Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.1.0-15.20190607git021d0fc
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Mon Jul 01 2019 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-14.20190618git021d0fc
 - Rebuilt for new VDR API version 2.4.1
 
