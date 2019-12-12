@@ -38,7 +38,7 @@ BuildRequires:  libXrender-devel
 BuildRequires:  libcap-devel
 BuildRequires:  dbus-glib-devel
 BuildRequires:  freeglut-devel
-BuildRequires:  mesa-libGL-devel
+BuildRequires:  pkgconfig(gl)
 BuildRequires:  mesa-libGLU-devel
 BuildRequires:  libXext-devel
 BuildRequires:  xorg-x11-proto-devel
