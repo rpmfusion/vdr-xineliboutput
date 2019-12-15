@@ -1,0 +1,12 @@
+--- a/configure
++++ b/configure
+@@ -401,7 +401,7 @@
+     test_library X11  xshape       "X11/extensions/shape.h"    "-lXext"      "XShapeQueryExtension(0,0,0)"
+     test_library X11  xdpms        "X11/extensions/dpms.h"     "-lXext"      "DPMSDisable(0)"
+     test_library X11  xinerama     "X11/extensions/Xinerama.h" "-lXinerama"  "XineramaQueryScreens(0,0)"
+-    test_library X11  opengl       "GL/glx.h"                  "-lGL -lGLU"  "glXQueryVersion(0,0,0)"
++    test_library X11  OPENGL       "GL/glx.h"                  "-lGL -lGLU"  "glXQueryVersion(0,0,0)"
+     test_library none vdpau        "vdpau/vdpau_x11.h"         "-lvdpau"     "vdp_device_create_x11(0,0,0,0)"
+     test_library X11  dbus-glib-1  \
+       "dbus/dbus-glib.h" \
+

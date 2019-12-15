@@ -11,7 +11,7 @@
 
 Name:           vdr-%{pname}
 Version:        2.1.0
-Release:        16.%{gitdate}git%{gitrev}%{?dist}
+Release:        17.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -24,6 +24,7 @@ URL:            http://sourceforge.net/projects/xineliboutput
 Source0:        %{name}-%{version}-%{gitrev}.tar.gz
 Source1:        %{name}.conf
 Source2:        allowed_hosts.conf
+Patch0:         fix_build_libglvnd.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
@@ -75,6 +76,7 @@ This package contain plugin for VDR
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 ./configure \
     --enable-x11 \
@@ -159,6 +161,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %endif
 
 %changelog
+* Sun Dec 15 2019 Leigh Scott <leigh123linux@gmail.com> - 2.1.0-17.20191117git32a5ffc
+- Fix build issue building against libglvnd headers
+
 * Thu Dec 12 2019 Martin Gansser <martinkg@fedoraproject.org> - 2.1.0-16.20191117git32a5ffc
 - Update to 2.1.0-16.20191117git32a5ffc
 
