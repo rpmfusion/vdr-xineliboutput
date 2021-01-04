@@ -101,7 +101,7 @@ This package contain plugin for VDR
 %build
 FFMPEG_CFLAGS="$FFMPEG_CFLAGS $(${cross_prefix}pkg-config --cflags libavformat libavcodec libswscale libavutil)"
 export=FFMPEG_CFLAGS 
-make CFLAGS="%{optflags} -fPIC $FFMPEG_CFLAGS" CXXFLAGS="%{optflags} -fPIC $FFMPEG_CFLAGS" %{?_smp_mflags} all
+make CFLAGS="%{optflags} -fPIC $FFMPEG_CFLAGS" CXXFLAGS="-std=gnu++14 %{optflags} -fPIC $FFMPEG_CFLAGS" %{?_smp_mflags} all
 
 %install
 install -dm 755 %{buildroot}%{xineplugindir}
@@ -163,6 +163,7 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %changelog
 * Mon Jan 04 2021 Martin Gansser <martinkg@fedoraproject.org> - 2.2.0-6.20200830git0b9a01d
 - Rebuilt for new VDR API version
+- Force C++14 as this code is not C++17 ready, needed for gcc11
 
 * Tue Dec 01 2020 Martin Gansser <martinkg@fedoraproject.org> - 2.2.0-5.20200830git0b9a01d
 - Update to 2.2.0-5.20200830git0b9a01d
