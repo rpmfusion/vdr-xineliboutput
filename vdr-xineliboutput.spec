@@ -3,15 +3,15 @@
 %global xinepluginver 2.2.0
 %global pname   xineliboutput
 %global vdrver  %(pkg-config --modversion vdr 2>/dev/null || echo ERROR)
-%global gitrev  0b9a01d
-%global gitdate 20200830
+%global gitrev  f4df324
+%global gitdate 20210820
 # build bluray support (disabled for now)
 %global have_bluray 1
 %global have_wayland 1
 
 Name:           vdr-%{pname}
 Version:        2.2.0
-Release:        10.%{gitdate}git%{gitrev}%{?dist}
+Release:        11.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -161,6 +161,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %endif
 
 %changelog
+* Wed Nov 24 2021 Martin Gansser <martinkg@fedoraproject.org> - 2.2.0-11.20210820gitf4df324
+- Update to 2.2.0-11.20210820gitf4df324
+
 * Fri Nov 12 2021 Leigh Scott <leigh123linux@gmail.com> - 2.2.0-10.20200830git0b9a01d
 - Rebuilt for new ffmpeg snapshot
 
