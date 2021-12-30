@@ -11,7 +11,7 @@
 
 Name:           vdr-%{pname}
 Version:        2.2.0
-Release:        11.%{gitdate}git%{gitrev}%{?dist}
+Release:        12.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 License:        GPLv2+
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -101,7 +101,7 @@ This package contain plugin for VDR
 %build
 FFMPEG_CFLAGS="$FFMPEG_CFLAGS $(${cross_prefix}pkg-config --cflags libavformat libavcodec libswscale libavutil)"
 export=FFMPEG_CFLAGS 
-make CFLAGS="%{optflags} -fPIC $FFMPEG_CFLAGS" CXXFLAGS="-std=gnu++14 %{optflags} -fPIC $FFMPEG_CFLAGS" %{?_smp_mflags} all
+%make_build CFLAGS="%{optflags} -fPIC $FFMPEG_CFLAGS" CXXFLAGS="-std=gnu++14 %{optflags} -fPIC $FFMPEG_CFLAGS"
 
 %install
 install -dm 755 %{buildroot}%{xineplugindir}
@@ -161,6 +161,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %endif
 
 %changelog
+* Thu Dec 30 2021 Martin Gansser <martinkg@fedoraproject.org> - 2.2.0-12.20210820gitf4df324
+- Rebuilt for new VDR API version
+
 * Wed Nov 24 2021 Martin Gansser <martinkg@fedoraproject.org> - 2.2.0-11.20210820gitf4df324
 - Update to 2.2.0-11.20210820gitf4df324
 
