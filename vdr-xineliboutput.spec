@@ -11,7 +11,7 @@
 
 Name:           vdr-%{pname}
 Version:        2.3.0
-Release:        14.%{gitdate}git%{gitrev}%{?dist}
+Release:        15.%{gitdate}git%{gitrev}%{?dist}
 Summary:        Plugins for watching VDR over Xine
 License:        GPL-2.0-or-later
 URL:            http://sourceforge.net/projects/xineliboutput
@@ -161,6 +161,9 @@ find %{buildroot}%{xineplugindir} -name '*.so' -exec chmod +x '{}' ';'
 %endif
 
 %changelog
+* Fri Dec 12 2025 Nicolas Chauvet <kwizart@gmail.com> - 2.3.0-15.20231105git16af850
+- Rebuilt for libbluray
+
 * Sun Sep 14 2025 Leigh Scott <leigh123linux@gmail.com> - 2.3.0-14.20231105git16af850
 - Rebuilt for new VDR API version 2.7.7
 
